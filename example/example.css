@@ -1,0 +1,91 @@
+/* Mobileselect part */
+.mobile_nav {
+	display: none;
+}
+.anchor-links {
+	display:none;
+}
+@media screen and (max-width: 600px) {
+	.mobile_nav {
+		display: block;
+	}
+	.anchor-links {
+		display:block;
+	}
+	.mobile_select_replace {
+		display: none;
+	}
+}
+
+
+
+
+
+
+
+/* Some dummy styles */
+ul,
+ul li{
+	margin: 0;
+	padding:0;
+}
+
+#main-navigation {
+
+}
+	#main-navigation ul {
+		background: #333;
+		list-style-type: none;
+		margin:0;
+		padding:0;
+	}
+		#main-navigation ul li{
+			float: left;
+			display: block;
+			margin:0;
+			padding:0;
+		}
+			#main-navigation ul li a{
+				display: block;
+				padding: 10px 20px;
+				background: #333;
+				color: #fff;
+				text-decoration: none;
+			}
+
+		#main-navigation ul li ul{
+			display: none;
+		}
+		#main-navigation ul li:hover > ul{
+			display: block;
+			position: absolute;
+		}
+		#main-navigation ul li ul li:hover > a{
+			background: #ff0099;
+		}
+		#main-navigation ul li ul li a{
+			background: #9900ff;
+		}
+		#main-navigation ul li ul li ul{
+			display: none;
+		}
+			#main-navigation ul li ul li ul li{
+				float: none;
+			}
+				#main-navigation ul li ul li ul li a{
+					background: #ff0099;
+				}
+
+
+/* -----------------------------------------------------------
+
+	Clear floats
+
+----------------------------------------------------------- */
+.wrapper 		{ display: inline-block; }
+.wrapper:after 	{ content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+* html .wrapper { height: 1%; }
+.wrapper 		{ display: block; }
+.clear { clear: both; }
+
+/*--------------------------------------------8<--------------------------------------------*/
