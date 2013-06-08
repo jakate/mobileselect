@@ -1,9 +1,9 @@
 var MobileSelect = function(configArray) {
 
-	var self = this;
+	var self      = this;
 
-	this.items = configArray.items;
-	this.config = configArray.config;
+	this.items    = configArray.items;
+	this.config   = configArray.config;
 
 	var new_items = [];
 
@@ -57,7 +57,7 @@ var MobileSelect = function(configArray) {
 
 	/**
 	 * Creates the html for the select
-	 * @param  {string} title The first item in the select (will show if select is not activated)
+	 * @param  {string} title The first item in the select
 	 * @param  {array} items
 	 * @return {[type]}  Returns markup
 	 */
@@ -111,7 +111,12 @@ var MobileSelect = function(configArray) {
 			// which we will use for the select
 			if($(this).attr('href'))
 			{
-				new_items.push({level: level, text: $(this).text(), href: $(this).attr('href'), obj: $(this)});
+				new_items.push({
+					level: level,
+					text: $(this).text(),
+					href: $(this).attr('href'),
+					obj: $(this)
+				});
 			}
 		});
 	};
@@ -127,7 +132,8 @@ var MobileSelect = function(configArray) {
 		}
 
 		// Map levels so, that we don't have any empty levels
-		// Lowest level will be 0 and next level that have links in it will be 1 and so on
+		// Lowest level will be 0 and next level that
+		// have links in it will be 1 and so on
 		var l       = 0;
 		var what    = [];
 		var becomes = [];
