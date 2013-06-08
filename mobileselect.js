@@ -152,6 +152,3 @@ var MobileSelect = function(configArray) {
 
 	init();
 };
-
-
-var log = function(message){ console.log(message); };
