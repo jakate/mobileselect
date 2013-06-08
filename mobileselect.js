@@ -3,6 +3,7 @@ var MobileSelect = function(configArray) {
 	var self = this;
 
 	this.config = configArray;
+
 	var new_items = [];
 
 	// This will run automatically.
@@ -25,8 +26,11 @@ var MobileSelect = function(configArray) {
 		});
 	};
 
-
-
+	/**
+	 * Creates the HTML <select>
+	 * @param  {number} index     The index of the config array items
+	 * @return {html select}      Will return ready markup for select
+	 */
 	var getSelect = function(index){
 
 		var config    = self.config.items[index];
@@ -50,6 +54,12 @@ var MobileSelect = function(configArray) {
 		return getSelectMarkup(title, items);
 	};
 
+	/**
+	 * Creates the html for the select
+	 * @param  {string} title The first item in the select (will show if select is not activated)
+	 * @param  {array} items
+	 * @return {[type]}  Returns markup
+	 */
 	var getSelectMarkup = function(title, items){
 		var content = "<div class='" + self.config.config.className + "'><select>";
 
@@ -68,23 +78,36 @@ var MobileSelect = function(configArray) {
 		return content;
 	};
 
+
 	var listChildren = function(item) {
 		var level = 0;
+
+		// Start the recursive child loop
 		getChildren($(item), level);
 
 		return new_items;
 	};
 
+	/**
+	 * Get children of the current elem
+	 * @param  {[type]} item  jquery dom element
+	 * @param  {[type]} level how deep we are in the chain
+	 */
 	var getChildren = function(item, level) {
 
 		level++;
 
+		// Loop through all children
 		$(item).children().each(function(){
 
+			// get children of this item
 			getChildren($(this), level);
 
+			// Add class to item, so we can hide it on mobile
 			$(this).addClass(self.config.config.replaceClassName);
 
+			// If this item is a link, add it to the new_items array
+			// which we will use for the select
 			if($(this).attr('href'))
 			{
 				new_items.push({level: level, text: $(this).text(), href: $(this).attr('href'), obj: $(this)});
@@ -92,24 +115,6 @@ var MobileSelect = function(configArray) {
 		});
 	};
 
-	var getOptions = function(item) {
-
-		var option = "";
-
-		$(item).find('a').each(function(index) {
-			// This should never happen, but if this link has
-			// already been replaced, don't do it again
-			if($(this).hasClass(self.config.config.replaceClassName)) return;
-
-			option += "<option value='" + $(this).attr('href') + "'>";
-			option += $(this).text();
-			option += "</option>";
-
-			$(this).addClass(self.config.config.replaceClassName);
-		});
-
-		return option;
-	};
 
 	var cleanUpLevels = function(items) {
 
