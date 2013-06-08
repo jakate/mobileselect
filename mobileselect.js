@@ -2,23 +2,24 @@ var MobileSelect = function(configArray) {
 
 	var self = this;
 
-	this.config = configArray;
+	this.items = configArray.items;
+	this.config = configArray.config;
 
 	var new_items = [];
 
 	// This will run automatically.
 	var init = function() {
 
-		for (var i = 0; i < self.config.items.length; i++) {
+		for (var i = 0; i < self.items.length; i++) {
 
 			new_items = [];
 
 			var sel = getSelect(i);
-			$(self.config.items[i].item).prepend(sel);
+			$(self.items[i].item).prepend(sel);
 		}
 
 		// listen for selection and navigate to url on change
-		$("." + self.config.config.className + " select").change(function() {
+		$("." + self.config.className + " select").change(function() {
 
 			var href = $(this).find("option:selected").val();
 
@@ -33,7 +34,7 @@ var MobileSelect = function(configArray) {
 	 */
 	var getSelect = function(index){
 
-		var config    = self.config.items[index];
+		var config    = self.items[index];
 		var title     = config.title !== undefined ? config.title : "Select";
 		var item      = config.item;
 
@@ -61,7 +62,7 @@ var MobileSelect = function(configArray) {
 	 * @return {[type]}  Returns markup
 	 */
 	var getSelectMarkup = function(title, items){
-		var content = "<div class='" + self.config.config.className + "'><select>";
+		var content = "<div class='" + self.config.className + "'><select>";
 
 			content += "<option value=''>";
 			content += title;
@@ -104,7 +105,7 @@ var MobileSelect = function(configArray) {
 			getChildren($(this), level);
 
 			// Add class to item, so we can hide it on mobile
-			$(this).addClass(self.config.config.replaceClassName);
+			$(this).addClass(self.config.replaceClassName);
 
 			// If this item is a link, add it to the new_items array
 			// which we will use for the select
